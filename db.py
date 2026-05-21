@@ -5,9 +5,16 @@ import os
 
 load_dotenv()
 
-DATABASE_URL = {
-    "url": os.getenv("URLDB")
-}
+# DATABASE_URL = {
+#     "url": os.getenv("URLDB")
+    
+# }
+DATABASE_URL = (
+    f"mysql+pymysql://{os.getenv('DB_USER')}:"
+    f"{os.getenv('DB_PASSWORD')}@"
+    f"{os.getenv('DB_HOST')}:4000/"
+    f"{os.getenv('DB_NAME')}"
+)
 
 
 engine = create_engine(

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Welcome, {{ user.email }}</h2>
+
+<div class="card">
+
+    <h3>Resume Analyzer</h3>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <textarea name="resume" placeholder="Paste your resume here..."></textarea>
+
+        <input type="file" name="file" accept=".pdf,.docx">
+
+        <input type="text" name="role" placeholder="Desired Role" required>
+
+        <button type="submit">
+            Analyze Resume
+        </button>
+
+    </form>
+
+</div>
+
+{% if result %}
+
+<div class="result-grid">
+
+    <div class="result-card">
+        <h3>Skills</h3>
+
+        <ul>
+            {% for item in result.skills %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="result-card">
+        <h3>Missing Skills</h3>
+
+        <ul>
+            {% for item in result.missing_skills %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="result-card">
+        <h3>Roadmap</h3>
+
+        <ul>
+            {% for item in result.roadmap %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="result-card">
+        <h3>Interview Questions</h3>
+
+        <ul>
+            {% for item in result.interview_questions %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

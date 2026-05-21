@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Your Resume History</h2>
+
+{% for report in reports %}
+
+<div class="card">
+
+    <h3>Resume Preview</h3>
+
+    <p>
+        {{ report.resume_text[:300] }}
+    </p>
+
+    <hr>
+
+    <div class="result-grid">
+
+        <div class="result-card">
+            <h4>Skills</h4>
+
+            <ul>
+                {% for item in report.result.skills %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="result-card">
+            <h4>Missing Skills</h4>
+
+            <ul>
+                {% for item in report.result.missing_skills %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
